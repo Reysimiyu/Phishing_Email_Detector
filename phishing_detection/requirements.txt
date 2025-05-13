@@ -1,0 +1,10 @@
+Django>=4.2
+scikit-learn>=1.3.0
+language-tool-python>=2.7.1
+joblib>=1.2.0
+pandas>=2.0.3
+numpy>=1.25.0
+matplotlib>=3.7.2
+chartjs
+tensorflow>=2.13.0
+requests
