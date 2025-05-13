@@ -1,0 +1,45 @@
+{% extends "phishing/home.html" %}
+{% block title %}Analyze Email{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="col-md-6">
+        <div class="card p-4 bg-white shadow-lg rounded-4 border-0">
+            <h3 class="text-center text-primary mb-4">Analyze Email for Phishing</h3>
+
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="sender_email" class="form-label">Sender Email</label>
+                    <input type="email" class="form-control" id="sender_email" name="sender_email" placeholder="example@domain.com" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email_body" class="form-label">Email Body</label>
+                    <textarea class="form-control" id="email_body" name="email_body" rows="4" placeholder="Paste the content of the email here..." required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="url_links" class="form-label">URL Links (if any)</label>
+                    <textarea class="form-control" id="url_links" name="url_links" rows="2" placeholder="https://example.com"></textarea>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success btn-lg shadow-sm">Analyze</button>
+                </div>
+            </form>
+
+            {% if result %}
+            <div class="alert mt-4 text-center fw-bold 
+                {% if result == 'Phishing' %}alert-danger
+                {% else %}alert-success
+                {% endif %}">
+                <div><strong>Result:</strong> {{ result }}</div>
+                <div><strong>Grammar Issues:</strong> {{ grammar }}</div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

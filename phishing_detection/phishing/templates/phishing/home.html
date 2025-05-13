@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EmailGuard | Phishing Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-section {
+            background: linear-gradient(to right, rgba(13, 17, 23, 0.85), rgba(25, 34, 43, 0.85));
+            background-size: cover;
+            background-position: center;
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-top: 10px;
+            color: #cfd3dc;
+        }
+
+        .hero-section .btn {
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
+
+        .navbar {
+            z-index: 2;
+        }
+
+        main {
+            flex: 1;
+            padding-top: 30px;
+            z-index: 2;
+            position: relative;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Optional particles.js background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">🛡️ EmailGuard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'analyze_email' %}">Analyze Email</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section position-relative">
+        <div id="particles-js"></div> <!-- For animated background -->
+        <div class="container position-relative z-1">
+            <h1>Welcome to EmailGuard</h1>
+            <p>Your AI-powered protection against phishing and email threats</p>
+            <a href="{% url 'analyze_email' %}" class="btn btn-outline-light">Analyze Your Email</a>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="container">
+        {% block content %}
+        <!-- Child templates will render content here -->
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p class="mb-1">&copy; 2025 EmailGuard | All Rights Reserved</p>
+        <small>Protecting your inbox with machine learning and cybersecurity</small>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Optional: particles.js (animated background) -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50 },
+                size: { value: 3 },
+                color: { value: "#ffffff" },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2
+                }
+            }
+        });
+    </script>
+</body>
+</html>
